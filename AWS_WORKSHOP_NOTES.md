@@ -135,6 +135,10 @@ Every API call to Claude (via Bedrock or directly) packages together:
 
 This is the **context window**. Use `/context` to see exactly what's currently loaded. The context window has a size limit, so Claude Code manages what to keep and what to summarize/drop as sessions grow long.
 
+![Context window — what gets sent to the LLM](image-1.png)
+
+![/context command output](image-2.png)
+
 ---
 
 ## 6. MCP — Model Context Protocol
@@ -176,6 +180,8 @@ Claude Code automatically routes tasks to different models based on complexity:
 
 The `/cost` command shows the session's token usage broken down by model, so you can see exactly what each model tier was used for and what it cost.
 
+![/cost output — token usage split by model](image-3.png)
+
 ---
 
 ## 9. Sub-Agents (Parallel Agents)
@@ -187,6 +193,8 @@ Claude Code can spawn **multiple agent instances in parallel** to tackle indepen
 - Explore multiple parts of a large codebase concurrently
 
 This is powerful for complex tasks where steps don't depend on each other. Sub-agents each have their own context and tool access, and their results are returned to the main agent to synthesize.
+
+![Sub-agents running in parallel](image-6.png)
 
 ---
 
@@ -202,9 +210,15 @@ This is powerful for complex tasks where steps don't depend on each other. Sub-a
 
 This is a good example of Claude Code's strength: you describe what you want at a high level, and it handles the boilerplate (IAM roles, CLI commands, JSON config, deployment order) that would otherwise take hours.
 
+![Deployed Q&A app](image-4.png)
+
 ### Iterating toward production
 
-When asked to design a production version, Claude asked clarifying questions before writing any code. This is good practice — it's called **requirements gathering**. The answers given:
+When asked to design a production version, Claude asked clarifying questions before writing any code. This is good practice — it's called **requirements gathering**.
+
+![Claude asking clarifying questions before building](image-7.png)
+
+The answers given:
 
 > Multi-event Q&A system, anonymous (nickname-based), admin moderation, real-time updates via WebSocket, upvote-only, AWS scalable backend. Hundreds to thousands of concurrent users. Event archiving after close. Optional admin authentication.
 
@@ -224,11 +238,15 @@ Giving Claude specific constraints (scale, auth model, real-time requirements) r
 
 Example feature added: **custom metrics dashboard** — keeping it minimal (write the test, then run it).
 
+![Locust codebase explored with /init](image-8.png)
+
 ---
 
 ## 12. Skills
 
 Skills are reusable prompt templates or workflows that extend Claude Code's built-in capabilities. You can invoke them with `/skill-name`. They handle common workflows like committing, reviewing PRs, scheduling tasks, etc. — without you writing the same instructions repeatedly.
+
+![Available skills in Claude Code](image-9.png)
 
 ---
 
